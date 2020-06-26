@@ -1,5 +1,7 @@
 class UrlShortener
+  BASE_URL = Rails.application.credentials[:base_url]
+
   def self.run(url)
-    'http://teste.com/123456'
+    "#{BASE_URL}/123456"
   end
 end

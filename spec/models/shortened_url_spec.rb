@@ -33,11 +33,11 @@ RSpec.describe ShortenedUrl, type: :model do
       end
     end
 
-    describe '#increment_access' do
+    describe '#increment_access!' do
       subject { create(:shortened_url, access_count: 0) }
 
       it 'increments access_count' do
-        expect { subject.increment_access }.
+        expect { subject.increment_access! }.
           to change { subject.access_count }.from(0).to(1)
       end
     end
