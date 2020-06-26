@@ -1,0 +1,18 @@
+inherit_from:
+  - .rubocop_airbnb.yml
+
+AllCops:
+  TargetRubyVersion: 2.7.1
+  Exclude:
+    - "**/spec/spec_helper.rb"
+    - "**/db/schema.rb"
+    - "**/bin/**/*"
+    - "**/seeds/**/*"
+    - "**/dummy/**/*"
+
+# Layout
+
+Layout/AlignHash:
+  Description: Align the elements of a hash literal if they span more than one line.
+  Enabled: true
+  EnforcedColonStyle: table
