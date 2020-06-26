@@ -1,5 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe ShortenedUrl, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context 'Migrations' do
+    it { is_expected.to have_db_column(:url).of_type(:string).with_options(null: false) }
+    it { is_expected.to have_db_column(:code).of_type(:string).with_options(null: false) }
+    it do
+      is_expected.to have_db_column(:access_count).of_type(:integer).
+        with_options(null: false, default: 0)
+    end
+    it { is_expected.to have_db_column(:created_at).of_type(:datetime).with_options(null: false) }
+    it { is_expected.to have_db_column(:updated_at).of_type(:datetime).with_options(null: false) }
+  end
+
+  context 'Validations' do
+    it { is_expected.to validate_url_of(:url) }
+  end
 end
