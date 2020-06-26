@@ -3,6 +3,10 @@ class ShortenedUrl < ApplicationRecord
 
   before_create :generate_url
 
+  def increment_access
+    increment!(:access_count)
+  end
+
   private
 
   def generate_url

@@ -32,5 +32,14 @@ RSpec.describe ShortenedUrl, type: :model do
         expect(shortened_url.url).to eq url
       end
     end
+
+    describe '#increment_access' do
+      subject { create(:shortened_url, access_count: 0) }
+
+      it 'increments access_count' do
+        expect { subject.increment_access }.
+          to change { subject.access_count }.from(0).to(1)
+      end
+    end
   end
 end
