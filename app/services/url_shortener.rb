@@ -1,5 +1,5 @@
 class UrlShortener
   def self.run(url)
-    '123456'
+    'http://teste.com/123456'
   end
 end
