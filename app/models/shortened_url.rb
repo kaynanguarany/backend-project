@@ -1,4 +1,6 @@
 class ShortenedUrl < ApplicationRecord
+  scope :most_accessed, -> { order(access_count: :desc).limit(100) }
+
   validates :destination_url, url: true
 
   before_create :generate_url

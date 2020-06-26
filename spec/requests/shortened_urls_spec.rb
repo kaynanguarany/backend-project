@@ -1,19 +1,44 @@
 require 'rails_helper'
 
 RSpec.describe 'Shortened Urls' do
-  describe 'GET /v1/shortened_url/:url' do
+  describe 'GET/v1/shortened_urls' do
+    let!(:urls) do
+      (1..2).map { |i| create(:shortened_url, access_count: i) }
+    end
+
+    it 'returns a list of shortened_urls' do
+      get v1_shortened_urls_path
+
+      expect(response).to have_http_status(:success)
+      expect(JSON.parse(response.body)).to match_array [
+        hash_including(
+          "access_count" => urls.first.access_count,
+          "destination_url" => urls.first.destination_url,
+          "url" => urls.first.url,
+        ),
+        hash_including(
+          "access_count" => urls.last.access_count,
+          "destination_url" => urls.last.destination_url,
+          "url" => urls.last.url,
+        ),
+      ]
+    end
+  end
+
+  describe 'GET /v1/shortened_urls/:url_code' do
     let(:shortened_url) { create(:shortened_url) }
 
     before { get v1_shortened_url_path(url_code) }
 
     context 'with persisted url' do
       let(:url_code) { shortened_url.url_code }
+      let(:access_count) { shortened_url.access_count + 1 }
 
       it 'finds a shortened_url' do
         expect(response).to have_http_status(:ok)
         expect(JSON.parse(response.body)).to include(
           {
-            "access_count" => shortened_url.access_count,
+            "access_count" => access_count,
             "destination_url" => shortened_url.destination_url,
             "url" => shortened_url.url,
           }
