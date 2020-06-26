@@ -1,3 +1,3 @@
 class ShortenedUrl < ApplicationRecord
-  validates :url, url: true
+  validates :destination_url, url: true
 end
