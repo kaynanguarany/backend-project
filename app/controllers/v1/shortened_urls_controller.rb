@@ -29,6 +29,6 @@ class V1::ShortenedUrlsController < ApplicationController
   end
 
   def url
-    "#{Rails.application.credentials[:base_url]}/#{params[:url_code]}"
+    "#{ENV.fetch('FRONT_URL')}/#{params[:url_code]}"
   end
 end

@@ -36,6 +36,8 @@ group :development, :test do
   gem 'factory_bot_rails'
   # A Ruby gem to load environment variables from `.env`.
   gem 'dotenv-rails'
+   # Use Faker to generate data dynamically
+  gem 'faker'
 end
 
 group :development do
@@ -50,8 +52,6 @@ end
 group :test do
   # Collection of testing matchers
   gem 'shoulda-matchers'
-  # Use Faker to generate data dynamically
-  gem 'faker'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
