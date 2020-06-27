@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ShortenedUrl, type: :model do
   context 'Migrations' do
-    it { is_expected.to have_db_column(:url).of_type(:string).with_options(null: false) }
+    it { is_expected.to have_db_column(:url).of_type(:string) }
     it do
       is_expected.to have_db_column(:destination_url).of_type(:string).with_options(null: false)
     end
@@ -24,7 +24,7 @@ RSpec.describe ShortenedUrl, type: :model do
       let(:destination_url) { attributes[:destination_url] }
       let(:url)             { Faker::Internet.url }
 
-      before { allow(UrlShortener).to receive(:run).with(destination_url) { url } }
+      before { allow(UrlShortener).to receive(:run) { url } }
 
       it 'creates with the correct url' do
         shortened_url = described_class.create(attributes)

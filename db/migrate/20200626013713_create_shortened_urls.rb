@@ -1,7 +1,7 @@
 class CreateShortenedUrls < ActiveRecord::Migration[6.0]
   def change
     create_table :shortened_urls do |t|
-      t.string :url, null: false
+      t.string :url
       t.string :destination_url, null: false
       t.integer :access_count, null: false, default: 0
 

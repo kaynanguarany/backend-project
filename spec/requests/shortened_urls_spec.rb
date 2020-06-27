@@ -64,7 +64,7 @@ RSpec.describe 'Shortened Urls' do
     end
 
     before do
-      allow(UrlShortener).to receive(:run).with(destination_url) { url }
+      allow(UrlShortener).to receive(:run) { url }
 
       post v1_shortened_urls_path, params: params
     end
